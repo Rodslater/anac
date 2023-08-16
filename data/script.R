@@ -1,42 +1,37 @@
 library(flightsbr)
 library(dplyr)
+library(lubridate)
 
-# download flights data
-df_2019 <- read_flights(date=2019, showProgress = TRUE)
-df_2020 <- read_flights(date=2020, showProgress = TRUE)
-df_2021 <- read_flights(date=2021, showProgress = TRUE)
-df_2022 <- read_flights(date=2022, showProgress = TRUE)
-df_2023 <- read_flights(date=2023, showProgress = TRUE)
+ano_atual <- as.numeric(format(Sys.Date(), "%Y"))
+ano_inicial <- as.numeric(format(Sys.Date(), "%Y"))-4
 
-# count daily passengers
+# Lista para armazenar os data frames de cada ano
+data_frames <- list()
 
-count_2019 <- df_2019 |>
-  mutate(dt_partida_real = as.Date(dt_partida_real)) |>
-  group_by(dt_partida_real) |>
-  summarise(total_pass = sum(as.numeric(nr_passag_pagos), na.rm = TRUE))
+# Loop de ano_inicial a ano_atual para baixar os dados
+for (year in ano_inicial:ano_atual) {
+  df <- read_flights(date = year, showProgress = TRUE)
+  data_frames[[as.character(year)]] <- df
+}
 
-count_2020 <- df_2020 |>
-  mutate(dt_partida_real = as.Date(dt_partida_real)) |>
-  group_by(dt_partida_real) |>
-  summarise(total_pass = sum(as.numeric(nr_passag_pagos), na.rm = TRUE))
+# Data frame para armazenar os resultados de contagem de passageiros de todos os anos
+combined_count <- data.frame()
 
-count_2021 <- df_2021 |>
-  mutate(dt_partida_real = as.Date(dt_partida_real)) |>
-  group_by(dt_partida_real) |>
-  summarise(total_pass = sum(as.numeric(nr_passag_pagos), na.rm = TRUE))
+# Loop para contar passageiros para cada ano
+for (year in ano_inicial:ano_atual) {
+  df <- data_frames[[as.character(year)]]
+  count_result <- df |>
+    mutate(dt_partida_real = as.Date(dt_partida_real)) |>
+    group_by(dt_partida_real) |>
+    summarise(total_pass = sum(as.numeric(nr_passag_pagos), na.rm = TRUE))
+  
+  # Adicione os resultados ao data frame 'combined_count'
+  combined_count <- bind_rows(combined_count, count_result)
+}
 
-count_2022 <- df_2022 |>
-  mutate(dt_partida_real = as.Date(dt_partida_real)) |>
-  group_by(dt_partida_real) |>
-  summarise(total_pass = sum(as.numeric(nr_passag_pagos), na.rm = TRUE))
+passageiros_aereos <- combined_count |> 
+  filter(year(dt_partida_real) >= ano_inicial & year(dt_partida_real) <= ano_atual)
 
-count_2023 <- df_2023 |>
-  mutate(dt_partida_real = as.Date(dt_partida_real)) |>
-  group_by(dt_partida_real) |>
-  summarise(total_pass = sum(as.numeric(nr_passag_pagos), na.rm = TRUE))
-
-
-passagens_aereas <- rbind(count_2019, count_2020, count_2021, count_2022, count_2023)
 
 saveRDS(passagens_aereas, 'data/passagens_aereas.rds')
 
