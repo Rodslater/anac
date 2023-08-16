@@ -21,7 +21,10 @@ jobs:
           packages: |
             any::dplyr
             any::tidyr
-            url::https://github.com/ipeaGIT/flightsbr/archive/refs/heads/master.zip, any::sessioninfo            
+            any::stringr
+            any::writexl
+            any::sidrar
+            url::https://github.com/tchiluanda/rsiconfi/archive/refs/heads/master.zip, any::sessioninfo            
             
       - name: Execute Script
         run: |
