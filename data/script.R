@@ -1,6 +1,5 @@
 library(flightsbr)
 library(dplyr)
-library(tidyr)
 
 # download flights data
 df_2019 <- read_flights(date=2019, showProgress = TRUE)
@@ -36,11 +35,8 @@ count_2023 <- df_2023 |>
   group_by(dt_partida_real) |>
   summarise(total_pass = sum(as.numeric(nr_passag_pagos), na.rm = TRUE))
 
-passagens_aereas <- count_2019 |>
-  full_join(count_2020) |> 
-  full_join(count_2021) |> 
-  full_join(count_2022) |> 
-  full_join(count_2023)
+
+passagens_aereas <- rbind(count_2019, count_2020, count_2021, count_2022, count_2023)
 
 saveRDS(passagens_aereas, 'data/passagens_aereas.rds')
 
