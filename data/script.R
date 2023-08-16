@@ -29,7 +29,7 @@ for (year in ano_inicial:ano_atual) {
   combined_count <- bind_rows(combined_count, count_result)
 }
 
-passageiros_aereos <- combined_count |> 
+passagens_aereas <- combined_count |> 
   filter(year(dt_partida_real) >= ano_inicial & year(dt_partida_real) <= ano_atual)
 
 
