@@ -46,5 +46,5 @@ drones <- read_delim("drones_cadastrados.csv",
                      delim = ";", escape_double = FALSE, trim_ws = TRUE, 
                      skip = 1)
 file.remove("drones_cadastrados.csv")
-saveRDS(drones, 'drones.rds')
+
 saveRDS(drones, 'data/drones.rds')
