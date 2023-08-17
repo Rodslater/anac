@@ -33,5 +33,5 @@ passagens_aereas <- combined_count |>
   filter(year(dt_partida_real) >= ano_inicial & year(dt_partida_real) <= ano_atual)
 
 
-saveRDS(passagens_aereas, 'data/passagens_aereas19a22.rds')
+saveRDS(passagens_aereas, 'data/passagens_aereas.rds')
 
