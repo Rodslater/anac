@@ -2,8 +2,10 @@ library(flightsbr)
 library(dplyr)
 library(lubridate)
 
-ano_atual <- as.numeric(format(Sys.Date(), "%Y"))
-ano_inicial <- as.numeric(format(Sys.Date(), "%Y"))-4
+memory.limit(24576)
+
+ano_atual <- 2022
+ano_inicial <- 2000
 
 # Lista para armazenar os data frames de cada ano
 data_frames <- list()
@@ -33,5 +35,5 @@ passagens_aereas <- combined_count |>
   filter(year(dt_partida_real) >= ano_inicial & year(dt_partida_real) <= ano_atual)
 
 
-saveRDS(passagens_aereas, 'data/passagens_aereas.rds')
+saveRDS(passagens_aereas, 'data/passagens_aereas19a22.rds')
 
