@@ -21,6 +21,8 @@ jobs:
           packages: |
             any::dplyr
             any::lubridate
+            any::httr
+            any::readr
             url::https://github.com/ipeaGIT/flightsbr/archive/refs/heads/master.zip, any::sessioninfo           
             
       - name: Execute Script
