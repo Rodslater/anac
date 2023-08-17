@@ -45,6 +45,9 @@ GET(url, write_disk(caminho_destino))
 drones <- read_delim("drones_cadastrados.csv", 
                      delim = ";", escape_double = FALSE, trim_ws = TRUE, 
                      skip = 1)
+colnames(drones) <- c("Código da aeronave","Data de validade","Operador", "CPF ou CNPJ","Tipo de Uso","Fabricante",
+                      "Modelo","Número de série","Peso máximo de decolagem (kg)","Ramo de atividade")
+
 file.remove("drones_cadastrados.csv")
 
 saveRDS(drones, 'data/drones.rds')
