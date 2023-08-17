@@ -1,3 +1,3 @@
-# Passagens aéreas
+# ANAC
 
-[![passagens_aereas](https://github.com/Rodslater/passagens_aereas/actions/workflows/main.yml/badge.svg)](https://github.com/Rodslater/passagens_aereas/actions/workflows/main.yml)
+[![anac](https://github.com/Rodslater/anac/actions/workflows/main.yml/badge.svg)](https://github.com/Rodslater/anac/actions/workflows/main.yml)
