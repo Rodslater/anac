@@ -1,6 +1,8 @@
 library(flightsbr)
 library(dplyr)
 library(lubridate)
+library(httr) #drone
+library(readr) #drone
 
 ano_atual <- as.numeric(format(Sys.Date(), "%Y"))
 ano_inicial <- as.numeric(format(Sys.Date(), "%Y"))-4
@@ -35,3 +37,13 @@ passagens_aereas <- combined_count |>
 
 saveRDS(passagens_aereas, 'data/passagens_aereas.rds')
 
+
+###### Drone ######
+url <- "https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuacao/aeronaves/drones-cadastrados/9-drones-cadastrados-formato-csv"
+caminho_destino <- "drones_cadastrados.csv"
+GET(url, write_disk(caminho_destino))
+drones <- read_delim("drones_cadastrados.csv", 
+                     delim = ";", escape_double = FALSE, trim_ws = TRUE, 
+                     skip = 1)
+file.remove("drones_cadastrados.csv")
+saveRDS(drones, 'drones.rds')
