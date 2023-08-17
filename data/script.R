@@ -2,10 +2,8 @@ library(flightsbr)
 library(dplyr)
 library(lubridate)
 
-memory.limit(24576)
-
-ano_atual <- 2022
-ano_inicial <- 2000
+ano_atual <- as.numeric(format(Sys.Date(), "%Y"))
+ano_inicial <- as.numeric(format(Sys.Date(), "%Y"))-4
 
 # Lista para armazenar os data frames de cada ano
 data_frames <- list()
