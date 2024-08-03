@@ -5,7 +5,7 @@ library(httr) #drone
 library(readr) #drone
 
 ano_atual <- as.numeric(format(Sys.Date(), "%Y"))
-ano_inicial <- as.numeric(format(Sys.Date(), "%Y"))-4
+ano_inicial <- as.numeric(format(Sys.Date(), "%Y"))-5
 
 # Lista para armazenar os data frames de cada ano
 data_frames <- list()
