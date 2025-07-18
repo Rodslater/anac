@@ -23,7 +23,7 @@ jobs:
             any::lubridate
             any::httr
             any::readr
-            any::parzer
+            github::ropensci/parzer
             url::https://github.com/ipeaGIT/flightsbr/archive/refs/heads/main.zip
             any::sessioninfo           
             
