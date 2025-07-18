@@ -23,7 +23,9 @@ jobs:
             any::lubridate
             any::httr
             any::readr
-            url::https://github.com/ipeaGIT/flightsbr/archive/refs/heads/main.zip, any::sessioninfo           
+            any::parzer
+            url::https://github.com/ipeaGIT/flightsbr/archive/refs/heads/main.zip
+            any::sessioninfo           
             
       - name: Execute Script
         run: |
