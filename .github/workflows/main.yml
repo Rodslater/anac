@@ -24,7 +24,7 @@ jobs:
             any::httr
             any::readr
             github::ropensci/parzer
-            url::https://github.com/ipeaGIT/flightsbr/archive/refs/heads/main.zip
+            github::ipeaGIT/flightsbr
             any::sessioninfo           
             
       - name: Execute Script
